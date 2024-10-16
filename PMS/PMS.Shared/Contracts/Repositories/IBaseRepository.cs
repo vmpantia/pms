@@ -6,7 +6,7 @@ namespace PMS.Shared.Contracts.Repositories
     {
         IQueryable<TEntity> Get();
         IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> expression);
-        void Add(TEntity entity);
+        void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
     }

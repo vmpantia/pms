@@ -21,7 +21,7 @@ namespace PMS.Infrastructure.Databases.Repositories
 
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> expression) => _table.Where(expression);
 
-        public void Add(TEntity entity) => _table.Add(entity);
+        public void Create(TEntity entity) => _table.Add(entity);
 
         public void Update(TEntity entity) => _table.Update(entity);
 

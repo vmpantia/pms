@@ -10,14 +10,32 @@ namespace PMS.Infrastructure.Databases.Repositories
     {
         public WorkItemRepository(PMSDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<WorkItem>> GetWorkItemsAsync(Expression<Func<WorkItem, bool>>? expression = null, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<WorkItem>> GetWorkItemsAsync(
+            Expression<Func<WorkItem, bool>>? expression = null, 
+            CancellationToken cancellationToken = default)
         {
             if(expression is null) 
-                return await Get()
+                return await base.Get()
                     .ToListAsync(cancellationToken);
 
-            return await Get(expression)
+            return await base.Get(expression)
                 .ToListAsync(cancellationToken);
+        }
+
+        public async Task CreateWorkItemAsync(
+            WorkItem workItem,
+            CancellationToken cancellationToken = default)
+        {
+            base.Create(workItem);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+        
+        public async Task UpdateWorkItemAsync(
+            WorkItem workItem,
+            CancellationToken cancellationToken = default)
+        {
+            base.Update(workItem);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -8,5 +8,9 @@ namespace PMS.Shared.Contracts.Repositories
         Task<IEnumerable<WorkItem>> GetWorkItemsAsync(
             Expression<Func<WorkItem, bool>>? expression = null, 
             CancellationToken cancellationToken = default);
+
+        Task CreateWorkItemAsync(
+            WorkItem workItem, 
+            CancellationToken cancellationToken = default);
     }
 }
