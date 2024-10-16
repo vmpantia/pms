@@ -2,7 +2,7 @@
 {
     public interface IDeletableEntity
     {
-        DateTime? DeletedAt { get; set; }
+        DateTimeOffset? DeletedAt { get; set; }
         string? DeletedBy { get; set; }
     }
 }
