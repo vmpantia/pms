@@ -1,9 +1,11 @@
+using PMS.Core.Extensions;
 using PMS.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddIntrastructure(builder.Configuration);
+builder.Services.AddCore();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

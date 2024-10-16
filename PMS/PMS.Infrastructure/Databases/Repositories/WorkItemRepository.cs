@@ -22,6 +22,12 @@ namespace PMS.Infrastructure.Databases.Repositories
                 .ToListAsync(cancellationToken);
         }
 
+        public async Task<WorkItem?> GetWorkItemAsync(
+            Expression<Func<WorkItem, bool>> expression,
+            CancellationToken cancellationToken = default) =>
+            await base.Get(expression)
+                      .SingleOrDefaultAsync(cancellationToken);
+
         public async Task CreateWorkItemAsync(
             WorkItem workItem,
             CancellationToken cancellationToken = default)

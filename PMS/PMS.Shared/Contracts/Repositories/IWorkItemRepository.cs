@@ -9,6 +9,10 @@ namespace PMS.Shared.Contracts.Repositories
             Expression<Func<WorkItem, bool>>? expression = null, 
             CancellationToken cancellationToken = default);
 
+        Task<WorkItem?> GetWorkItemAsync(
+            Expression<Func<WorkItem, bool>> expression,
+            CancellationToken cancellationToken = default);
+
         Task CreateWorkItemAsync(
             WorkItem workItem, 
             CancellationToken cancellationToken = default);
