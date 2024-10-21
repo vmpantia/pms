@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Core.Commands.Models;
 using PMS.Core.Queries.Models;
+using PMS.Shared.Models.Dtos;
 
 namespace PMS.Api.Controllers
 {
@@ -17,5 +19,9 @@ namespace PMS.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetWorkItemByIdAsync(Guid id) => 
             await HandleResultAsync(new GetWorkItemByIdQuery(id));
+
+        [HttpPost]
+        public async Task<IActionResult> CreateWorkItemAsync([FromBody] SaveWorkItemDto request) =>
+            await HandleResultAsync(new CreateWorkItemCommand(request));
     }
 }
