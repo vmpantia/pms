@@ -17,13 +17,16 @@ namespace PMS.Web.Services
             _logger = logger;
         }
 
-        public async Task<IEnumerable<WorkItemDto>> GetWorkItemsAsync(CancellationToken cancellationToken = default)
+        private async Task<TResult> HandleResultResponseAsync<TResult>(HttpResponseMessage response)
         {
-            var response = await _httpClient.GetAsync("api/WorkItems");
             var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Result<IEnumerable<WorkItemDto>>>(content);
+            return JsonConvert.DeserializeObject<TResult>(content)!;
+        }
 
-            return result.Data;
+        public async Task<Result<IEnumerable<WorkItemDto>>> GetWorkItemsAsync(CancellationToken cancellationToken = default)
+        {
+            var response = await _httpClient.GetAsync("api/WorkItems", cancellationToken);
+            return await HandleResultResponseAsync<Result<IEnumerable<WorkItemDto>>>(response);
         }
     }
 }

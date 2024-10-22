@@ -2,6 +2,8 @@
 {
     public sealed class Result<TData> where TData : class
     {
+        public Result() { }
+
         private Result(TData? data = null)
         {
             IsSuccess = true;
